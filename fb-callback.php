@@ -37,11 +37,11 @@ if (! isset($accessToken)) {
 }
 
 // Logged in
-echo '<h3>Access Token</h3>';
-var_dump($accessToken->getValue());
+//echo '<h3>Access Token</h3>';
+//var_dump($accessToken->getValue());
 
 // The OAuth 2.0 client handler helps us manage access tokens
-$oAuth2Client = $fb->getOAuth2Client();
+/*$oAuth2Client = $fb->getOAuth2Client();
 
 // Get the access token metadata from /debug_token
 $tokenMetadata = $oAuth2Client->debugToken($accessToken);
@@ -66,13 +66,32 @@ if (! $accessToken->isLongLived()) {
   echo '<h3>Long-lived</h3>';
   var_dump($accessToken->getValue());
 }
-
+*/
 $_SESSION['fb_access_token'] = (string) $accessToken;
-//$fb->setDefaultAccessToken($_SESSION['fb_access_token']);
+$fb->setDefaultAccessToken($_SESSION['fb_access_token']);
 
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 //header('Location: https://fbscrab.herokuapp.com/userdata.php');
+
+try {
+		$profile_request = $fb->get('/me?fields=name,first_name,last_name,birthday');
+		$profile = $profile_request->getGraphNode()->asArray();
+	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+		// When Graph returns an error
+		echo 'Graph returned an error: ' . $e->getMessage();
+		session_destroy();
+		// redirecting user back to app login page
+		header("Location: ./");
+		exit;
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+		// When validation fails or other local issues
+		echo 'Facebook SDK returned an error: ' . $e->getMessage();
+		exit;
+	}
+	
+	// printing $profile array on the screen which holds the basic info about user
+	echo $profile['birthday']->format('d-m-Y');
 
 
 ?>
