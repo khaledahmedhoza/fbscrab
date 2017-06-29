@@ -86,4 +86,7 @@ try {
 $user = $response->getGraphNode()->asArray();
 
 echo 'Name: ' . $user['name'];
+
+echo '<h3>Access Token</h3>';
+var_dump($accessToken->getValue());
 ?>
