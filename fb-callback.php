@@ -71,5 +71,6 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
-//header('Location: https://example.com/members.php');
+header('Location: https://fbscrab.herokuapp.com/userdata.php');
+
 ?>
