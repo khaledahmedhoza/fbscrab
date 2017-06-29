@@ -74,19 +74,6 @@ var_dump($accessToken->getValue());
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 //header('Location: https://fbscrab.herokuapp.com/userdata.php');
-try {
-  // Returns a `Facebook\FacebookResponse` object
-    $response = $fb->get('/me?fields=id,name');
-    } catch(Facebook\Exceptions\FacebookResponseException $e) {
-    echo 'Graph returned an error: ' . $e->getMessage();
-    exit;
-    } catch(Facebook\Exceptions\FacebookSDKException $e) {
-    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-    exit;
-}
 
-$user = $response->getGraphNode()->asArray();
-
-echo 'Name: ' . $user['name'];
 
 ?>
