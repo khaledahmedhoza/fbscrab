@@ -13,9 +13,9 @@ $fb = new Facebook\Facebook([
 
 $helper = $fb->getRedirectLoginHelper();
 
-$permissions = ['about','age_range','education','favorite_athletes','favorite_teams','gender','location','relationship_status','sports','religion','work']; // Optional permissions
+$permissions = ['about','age_range','education','favorite_athletes','favorite_teams','gender','location','relationship_status','sports','religion','work','books{"about","name","description","category"}']; // Optional permissions
 //id,name,about,age_range,education,favorite_athletes,favorite_teams,gender,location,relationship_status,sports,religion,work,books{about,name,description,category},events{name,description,category},games{name,about,description,category},likes{name,about,description,category},movies{about,name,category,description},music{about,name,category,description},posts{description,story,message},tagged_places,television{about,description,category,name}
-$loginUrl = $helper->getLoginUrl('https://fbscrab.herokuapp.com/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('https://fbscrab.herokuapp.com/fb-callback.php');
 
 echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 
