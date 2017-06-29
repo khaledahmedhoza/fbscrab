@@ -74,7 +74,7 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 //header('Location: https://fbscrab.herokuapp.com/userdata.php');
 try {
   // Returns a `Facebook\FacebookResponse` object
-    $response = $fb->get('/me?fields=id,name', '{access-token}');
+    $response = $fb->get('/me?fields=id,name');
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
     echo 'Graph returned an error: ' . $e->getMessage();
     exit;
@@ -83,7 +83,7 @@ try {
     exit;
 }
 
-$user = $response->getGraphUser();
+$user = $response->getGraphNode()->asArray();
 
 echo 'Name: ' . $user['name'];
 ?>
