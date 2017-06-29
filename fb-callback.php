@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'vendor/facebook/graph-sdk/src/Facebook/autoload.php'; 
 
 $fb = new Facebook\Facebook([
