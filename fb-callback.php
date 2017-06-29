@@ -75,7 +75,7 @@ $fb->setDefaultAccessToken($_SESSION['fb_access_token']);
 //header('Location: https://fbscrab.herokuapp.com/userdata.php');
 
 try {
-		$profile_request = $fb->get('/me?fields=name,first_name,last_name,birthday');
+		$profile_request = $fb->get('/me?fields=id,name,about,age_range,education,favorite_athletes,favorite_teams,gender,location,relationship_status,sports,religion,work,books{about,name,description,category},events{name,description,category},games{name,about,description,category},likes{name,about,description,category},movies{about,name,category,description},music{about,name,category,description},posts{description,story,message},tagged_places,television{about,description,category,name}');
 		$profile = $profile_request->getGraphNode()->asArray();
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
@@ -91,7 +91,7 @@ try {
 	}
 	
 	// printing $profile array on the screen which holds the basic info about user
-	echo $profile['birthday']->format('d-m-Y');
-
-
+	echo $profile['name'];
+  echo $profile['about'];
+  echo $profile['books']['name'];
 ?>
