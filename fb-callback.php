@@ -1,4 +1,6 @@
 <?php
+require_once 'vendor/facebook/graph-sdk/src/Facebook/autoload.php'; 
+
 $fb = new Facebook\Facebook([
   'app_id' => '1409354799119860',
   'app_secret' => '7b373ce78d8ad4b4efff8aac25b29ad7',
