@@ -69,7 +69,8 @@ if (! $accessToken->isLongLived()) {
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 $fb->setDefaultAccessToken($_SESSION['fb_access_token']);
-
+echo '<h3>Access Token</h3>';
+var_dump($accessToken->getValue());
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 //header('Location: https://fbscrab.herokuapp.com/userdata.php');
@@ -88,6 +89,4 @@ $user = $response->getGraphNode()->asArray();
 
 echo 'Name: ' . $user['name'];
 
-echo '<h3>Access Token</h3>';
-var_dump($accessToken->getValue());
 ?>
